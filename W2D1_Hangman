@@ -1,0 +1,175 @@
+import random
+import os
+import string
+
+HANGMAN_PICS = [
+    r"""
+ +--+
+ |  |
+    |
+    |
+    |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+    |
+    |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+ |  |
+    |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+/|  |
+    |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+/|\ |
+    |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+/|\ |
+/   |
+    ===
+""",
+    r"""
+ +--+
+ |  |
+ O  |
+/|\ |
+/ \ |
+    ===
+"""
+]
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def load_words():
+
+    path = 'Hangman.txt'
+    if os.path.exists(path):
+        with open(path, 'r', encoding='utf-8') as f:
+            words = [w.strip().lower() for w in f if w.strip()]
+        words = [w for w in words if all(ch in string.ascii_lowercase + '-' for ch in w)]
+        if words:
+            return words
+    return [
+        "python", "algoritm", "variabila", "functie", "lista", "tuplu",
+        "dictionar", "modul", "clasa", "iterator",
+        "bug", "debug", "program", "fereastra", "fisier", "memorie", "server",
+        "client", "socket", "internet", "hash", "vector", "matrice"
+    ]
+
+def pick_word(words):
+    return random.choice(words)
+
+def masked_word(secret, guessed):
+    return ' '.join([ch if ch in guessed or not ch.isalpha() else '_' for ch in secret])
+
+def display_state(secret, guessed, wrong_guesses):
+    clear_screen()
+    print(HANGMAN_PICS[len(wrong_guesses)])
+    print("Cuvant: ", masked_word(secret, guessed))
+    print("Litere ghicite: ", ' '.join(sorted(guessed)) if guessed else "-")
+    print(f"Greseli ({len(wrong_guesses)}/{len(HANGMAN_PICS)-1}): ", ' '.join(sorted(wrong_guesses)) if wrong_guesses else "-")
+    print()
+
+def get_letter(already_tried):
+    while True:
+        user = input("Ghiceste o litera (sau '!' pentru a incerca tot cuvantul): ").strip().lower()
+        if user == '!':
+            return '!'
+        if len(user) != 1 or user not in string.ascii_lowercase:
+            print("Te rog o singura litera [a-z].")
+            continue
+        if user in already_tried:
+            print("Ai incercat deja litera asta.")
+            continue
+        return user
+
+def play_round(words):
+    secret = pick_word(words)
+    guessed = set()
+    wrong = set()
+    max_wrong = len(HANGMAN_PICS) - 1
+
+    while True:
+        display_state(secret, guessed, wrong)
+
+        current_mask = masked_word(secret, guessed).replace(' ', '')
+        if current_mask == secret:
+            print(f"Bravo! Ai ghicit cuvantul: {secret.upper()}")
+            return True
+        if len(wrong) >= max_wrong:
+            print(f"Ai pierdut. Cuvantul era: {secret.upper()}")
+            return False
+
+        choice = get_letter(guessed | wrong)
+        if choice == '!':
+            attempt = input("Introdu tot cuvantul: ").strip().lower()
+            if attempt == secret:
+                display_state(secret, guessed | set(secret), wrong)
+                print(f"Excelent! Ai ghicit cuvantul: {secret.upper()}")
+                return True
+            else:
+                print("Nu este corect.")
+                for _ in range(2):
+                    if len(wrong) < max_wrong:
+                        wrong.add(random.choice([c for c in string.ascii_lowercase if c not in wrong]))
+                continue
+
+        if choice in secret:
+            guessed.add(choice)
+        else:
+            wrong.add(choice)
+
+def main():
+    words = load_words()
+    wins = 0
+    losses = 0
+    clear_screen()
+    print("=== HANGMAN ASCII ===")
+    print("Reguli: ghiceste literele. '!' pentru a incerca tot cuvantul (risc: penalizare).")
+    print("Poti adauga propriile cuvinte in 'words.txt' (un cuvant pe linie).")
+    input("Apasa Enter pentru a incepe...")
+
+    while True:
+        result = play_round(words)
+        if result:
+            wins += 1
+        else:
+            losses += 1
+
+        print(f"Scor: Victorii {wins} | Infrangeri {losses}")
+        again = input("Joci din nou? [d/n]: ").strip().lower()
+        if again != 'd':
+            print("Multumesc pentru joc!")
+            break
+
+if __name__ == "__main__":
+    main()
+
+with open('/mnt/data/hangman_ascii.py', 'w', encoding='utf-8') as f:
+    f.write(code)
+
+'/mnt/data/hangman_ascii.py'

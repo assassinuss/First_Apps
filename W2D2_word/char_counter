@@ -1,0 +1,45 @@
+import os
+from collections import Counter
+
+def list_txt_files():
+    files = [f for f in os.listdir('.') if f.endswith('.txt')]
+    return files
+
+def count_words_and_characters(filename):
+    with open(filename, 'r', encoding='utf-8') as file:
+        text = file.read()
+        word_list = text.split()
+        word_count = len(word_list)
+        char_count = len(text)
+    return word_count, char_count, word_list, text
+
+def count_and_sort_words(word_list):
+    word_counter = Counter(word_list)
+    repeated_words = {word: count for word, count in word_counter.items() if count > 1}
+    sorted_words = dict(sorted(repeated_words.items(), key=lambda x: x[0]))
+    return sorted_words
+
+def count_and_sort_characters(text):
+    char_counter = Counter(text)
+    sorted_chars = dict(sorted(char_counter.items(), key=lambda x: x[0]))
+    return sorted_chars
+
+txt_files = list_txt_files()
+print("Available .txt files in the current directory:")
+for f in txt_files:
+    print(f)
+
+file_name = input("Enter the filename: ")
+words, chars, word_list, text = count_words_and_characters(file_name)
+print(f"Words: {words}")
+print(f"Characters: {chars}")
+
+char_counts = count_and_sort_characters(text)
+print("\nCharacters and their counts:")
+for char, count in char_counts.items():
+    print(f"{char}: {count}")
+
+word_counts = count_and_sort_words(word_list)
+print("\nWords used more than once:")
+for word, count in word_counts.items():
+    print(f"{word}: {count}")

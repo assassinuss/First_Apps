@@ -1,0 +1,68 @@
+import random
+
+def check(board, row, col, num):
+    for i in range(9):
+        if board[i][col] == num or board[row][i] == num:
+            return False
+    start_row = (row // 3) * 3
+    start_col = (col // 3) * 3
+    for i in range(start_row, start_row + 3):
+        for j in range(start_col, start_col + 3):
+            if board[i][j] == num:
+                return False
+    return True
+
+def generate_board():
+    board = [[0 for i in range(9)] for j in range(9)]
+    for i in range(9):
+        for j in range(9):
+            if board[i][j] == 0:
+                numbers = [1,2,3,4,5,6,7,8,9]
+                random.shuffle(numbers)
+                for num in numbers:
+                    if check(board, i, j, num):
+                        board[i][j] = num
+                        break
+    return board
+
+    
+def print_board(board):
+    for i in range(9):
+        if i % 3 == 0 and i != 0:
+            print("-" * 21)
+        for j in range(9):
+            if j % 3 == 0 and j != 0:
+                print("|", end=" ")
+            print(board[i][j] if board[i][j] != 0 else ".", end=" ")
+        print()
+
+def hide_num(board):
+    hidden_board = [row[:] for row in board]
+    pos = random.sample(range(81), 27)
+    for p in pos:
+        hidden_board[p // 9][p % 9] = 0
+    return hidden_board
+
+def sudoku():
+    board = generate_board()
+    hidden_board = hide_num(board)
+    print_board(hidden_board)
+    while True:
+        guess = input("Enter row col num (e.g. 1 2 3), or 'q' to quit: ")
+        if guess.lower() == 'q':
+            print("Goodbye!")
+            break
+        try:
+            row, col, num = map(int, guess.strip().split())
+            if hidden_board[row][col] == 0 and board[row][col] == num:
+                hidden_board[row][col] = num
+            else:
+                print("Invalid move. Try again.")
+        except:
+            print("Invalid input. Try again.")
+        print_board(hidden_board)
+        if all(all(cell != 0 for cell in row) for row in hidden_board):
+            print("Congratulations, you solved the puzzle!")
+            break
+
+sudoku()

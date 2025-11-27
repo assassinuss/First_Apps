@@ -1,0 +1,95 @@
+Data:
+
+2025-10-11
+
+Locatie:
+
+UPA - Iasi
+
+Prezenta:
+
+Lucian, Andrei, Florin, Stefan, Denis
+
+Log:
+
+S-a discutat ultimul raliu
+S-au constatat nereguli
+S-au gasit solutii
+S-a mers la cafea
+
+end of meeting
+
+Data:
+
+2025-10-11
+
+Locatie:
+
+UPA - Iasi
+
+Prezenta:
+
+Lucian, Andrei, Florin, Stefan, Denis
+
+Log:
+
+S-a comandat ceai
+S-a intarziat
+S-a comandat bere
+S-au discutat chestii
+S-a achitat
+S-a terminat
+
+end of meeting
+
+Data: 
+
+2025-11-11 
+
+Locatie: Camara 
+
+Participanti: Ursu 
+
+Log:
+
+S-a bagat ursul in camara
+S-a dat ursul afara
+
+end of meeting
+
+Data: 
+
+2025-11-11
+
+Locatie: 
+
+camara
+
+Participanti: 
+
+ursu 
+
+Log:
+
+s-a bagat ursu in camara
+s-a dat afara
+
+end of file
+
+Data: 
+
+2025-11-12
+
+Locatie: Palas
+
+Participanti:
+
+Stefan, Elena, Adrei
+
+Log:
+
+Am mancat la Wendy's
+Am vorbit chestii
+Am plecat
+
+end of meetding

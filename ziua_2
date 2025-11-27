@@ -1,0 +1,66 @@
+
+
+def add(a, b):
+    return a + b
+
+def subt(a, b):
+    return a - b
+
+def mult(a, b):
+    return a * b
+
+def div():
+    a = float(input("Introdu primul numar: "))
+    chek_zero(a)
+    b = float(input("Introdu al doilea numar: "))
+    chek_zero(b)
+    return a / b
+
+def get_num(a, b):
+    num1 = float(input("Introdu primul numar: "))
+    num2 = float(input("Introdu al doilea numar: "))    
+
+def chek_zero(a, b):
+    while a == 0
+        if a == 0:
+            print("Nu se poate imparti la 0, introdu un numar diferit de 0")
+            a = float(input())
+        else:
+            return a
+
+def pow(a, b):
+    return a ** b
+
+print("Calculator")
+print("Alege operatia:\n1. Adunare\n2. Scadere\n3. Inmultire\n4. Impartire\n5. Ridicare la putere\n0. Iesire")
+
+option = input(str)
+
+while option != '0':
+    if option in ['1', '2', '3', '4', '5']:
+
+        if option == '1':
+            get_num(num1, num2)
+            result = float add(num1, num2)
+            print(result)
+        elif option == '2':
+            get_num(num1, num2)            
+            result = float add(num1, num2)
+            print(result)
+        elif option == '3':
+            get_num(num1, num2)
+            result = float add(num1, num2)
+            print(result)
+        elif option == '4':
+            result = float div(num1, num2)
+            print(result)
+        elif option == '5':
+            get_num(num1, num2)
+            result = float pow(num1, num2)
+            print(result)    
+        else:
+            print("Optiune invalida")
+
+    print(result)
+    print("\nAlege operatia:\n1. Adunare\n2. Scadere\n3. Inmultire\n4. Impartire\n5. Ridicare la putere\n0. Iesire")
+    option = input()

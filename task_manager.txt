@@ -1,0 +1,20 @@
+1. Alergare - O sa alerg de 3 ori pe saptamana
+   Frequency: {'type': 'fixed', 'day': 'Monday, Wednesday, Friday'}
+   Done this week: 0
+2. Programare Python - O sa programez in python de 5 ori pe saptamana pentru o ora
+   Frequency: {'type': 'any', 'times': 5}
+   Done this week: 0
+3. Sala - O sa merg la sala de 3 ori pe saptamana
+   Frequency: {'type': 'any', 'times': 3}
+   Done this week: 0
+4. Filozofie - Machiavelli - O sa studiez filozofia lui Machiavelli de 3 ori pe saptamana pentru o ora
+   Frequency: {'type': 'any', 'times': 3}
+   Done this week: 0
+5. Depunere CV - O sa depun 5 CV-uri pe saptaman
+   Frequency: {'type': 'any', 'times': 1}
+   Done this week: 0
+
+nume - str
+descriere - str
+freventa - int 
+zile - int

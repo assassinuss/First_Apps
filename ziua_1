@@ -1,0 +1,78 @@
+from time import time
+
+def num_guess_easy():
+    print("Cate jocuri joci?")
+    guesses = int(input())
+    
+    for i in range(guesses):
+        print("Ghiceste numarul intre 1 si 10")
+        guess = int(input())
+        if guess == random_number:
+            print("Ai ghicit")
+        else:
+            print("Nu ai ghicit")
+
+def num_guess_hard():
+    print("Cate jocuri joci?")
+    guesses = int(input())
+    
+    for i in range(guesses):
+        print("Ghiceste numarul intre 1 si 10")
+        num = time.time()
+        num = num * time.time()*1000
+        num = int(num)%10
+        guess = int(input())
+        while guess < 1 or guess > 10:
+            print("Numarul trebuie sa fie intre 1 si 10")
+            guess = int(input())
+    
+        if guess == int(num):
+            print("Ai ghicit")
+        else:
+            print("Nu ai ghicit numarul era " + str(num))
+        
+def num_guess_hints():
+    print("Cate jocuri joci?")
+    guesses = int(input())
+    
+    for i in range(guesses):
+        print("Ghiceste numarul intre 1 si 10")
+        num = time.time()
+        num = num * time.time()*1000
+        num = int(num)%9 + 1
+        guess_correct = False
+
+        for j in range(3):
+            guess = int(input())
+            
+            while guess < 1 or guess > 10:
+                print("Numarul trebuie sa fie intre 1 si 10")
+                guess = int(input())
+                
+            if guess == num:
+                print("Ai ghicit")
+                guess_correct = True
+                range(3)
+                j=3
+            elif j==3:
+                pass
+            elif guess < num:
+                print("mai mare")
+            elif guess > num:
+                print("mai mic")    
+
+        if not guess_correct:
+            print("Nu ai ghicit numarul era " + str(num))
+
+print("vrei sa joci:\n1. usor\n2. greu\n3. cu indicii")
+option = 0
+
+while option < 1 or option > 3:
+    option = int(input())
+
+if option == 1:
+    num_guess_easy()
+elif option == 2:
+    num_guess_hard()    
+elif option == 3:
+    num_guess_hints()

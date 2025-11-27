@@ -1,0 +1,13 @@
+[
+  {
+    "name": "1",
+    "desc": "1",
+    "freq": {
+      "type": "fixed",
+      "day": "Monday"
+    },
+    "done": [
+      "2025-10-12"
+    ]
+  }
+]

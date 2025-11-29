@@ -15,10 +15,11 @@ class arbitru():
         self.nr_raliuri = nr_raliuri
         self.competente = competente
     
-    def info_inst(self):
+    def info_inst_arbitru():
+#        temp_id = input("Introduceti ID-ul de vizualizat:")
         return f"ID: {self.id.strip()}, Nume: {self.nume.strip()}, An Inscriere: {self.an_inscriere.strip()}, Nr Raliuri: {self.nr_raliuri.strip()}, Competente: {self.competente.strip()}"
     
-    def init_inst(self):
+    def init_inst_arbitru(self):
         self.id = input("Introduceti ID-ul arbitru: ").strip()
         for i in range(len(self.id), 4):
             self.id += " "
@@ -75,6 +76,63 @@ class sedinta:
         self.subiect = subiect
         self.participanti = participanti
         self.locatie = locatie
+
+    def info_inst_sedinta (self)
+        return f"ID: {self.id.strip()}, Data: {self.data.strip()}, Subiect: {self.subiect.strip()}, Participanti: {self.participanti.strip()}, Locatie: {self.locatie.strip()}"
+
+    def init_inst_sedinta(self):
+        self.id = input("Introduceti ID-ul sedintei")
+        for i in range(len(self.id), 4):
+            self.id += " "
+        self.data = input("Introduceti data sedintei (ex: 2025-05-10): ")
+        for i in range(len(self.data), 10):
+            self.data += " "
+        self.subiect = input("Introduceti subiectul sedintei: ")
+        for i in range(len(self.subiect), 30):
+            self.subiect += " "
+        self.participanti = input("Introduceti participantii la sedinta (separati prin virgula): ")
+        self.locatie = input("Introduceti locatia sedintei: ")
+        for i in range(len(self.locatie), 20):
+            self.locatie += " "
+        
+    def modify_inst(self):
+        print ("Modificati datele sedintei (apasati Enter pentru a pastra valoarea curenta):")
+        temp_id = input("Introduceti noul ID al sedintei: ").strip()
+        if temp_id != "":
+            self.id = temp_id
+        temp_data = input("Introduceti noua data sedintei (ex: 2025-05-10): ").strip()
+        if temp_data != "":
+            self.data = temp_data
+        temp_subiect = input("Introduceti noul subiect al sedintei: ").strip()
+        for i in range(len(self.subiect), 30):
+            temp_subiect += " "
+        if temp_subiect != "":
+            self.subiect = temp_subiect
+        temp_participanti = input("Introduceti noii participanti la sedinta (separati prin virgula): ").strip()
+        if temp_participanti != "":
+            self.participanti = temp_participanti
+        temp_locatie = input("Introduceti noua locatie a sedintei: ").strip()
+        for i in range(len(self.locatie), 20):
+            temp_locatie += " "
+        if temp_locatie != "":
+            self.locatie = temp_locatie
+    
+    def save_inst(self, filename):
+        with open(filename, "a", encoding="utf-8") as f:
+            content=f.read()
+            entry = f"{self.id}|{self.data}|{self.subiect}|{self.participanti}|{self.locatie}\n"
+            f.write(content)
+            f.write(entry)
+    
+    def remove_inst(self):
+        id = input("Introduceti ID-ul sedintei de sters: ")
+        with open("sedinte.txt", "r", encoding="utf-8") as f:
+            lines = f.readlines()
+        with open("sedinte.txt", "w", encoding="utf-8") as f:
+            for line in lines:
+                if not line.startswith(id):
+                    f.write(line)
+    
 
 class raliu:
     def __init__(self, nume, data, locatie, arbitri_delegati):
